@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Креативный Сайт</title>
+    <style>
+        /* Переменные для удобной смены цветов (Тема оформления) */
+        :root {
+            --bg-color: #f4f7f6;
+            --text-color: #2c3e50;
+            --card-bg: #ffffff;
+            --accent-color: #3498db;
+            --shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Темная тема (активируется через JavaScript) */
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #f5f5f5;
+            --card-bg: #2d2d2d;
+            --accent-color: #e74c3c;
+            --shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Базовые стили страницы */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        header {
+            max-width: 1000px;
+            margin: 40px auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        /* Кнопка переключения темы */
+        .theme-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: var(--shadow);
+        }
+
+        .theme-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Сетка карточек проектов */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transform: translateY(0);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        /* Анимация при наведении мыши */
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+            border-bottom: 4px solid var(--accent-color);
+        }
+
+        .card h2 {
+            margin-bottom: 12px;
+            color: var(--accent-color);
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            opacity: 0.8px;
+        }
+
+        /* Адаптивность для мобильных */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Мое Портфолио 🚀</h1>
+        <button class="theme-btn" id="themeToggle">Сменить тему</button>
+    </header>
+
+    <main class="container">
+        <!-- Карточка 1 -->
+        <div class="card">
+            <h2>Проект 1: Веб-сервис</h2>
+            <p>Описание вашего первого крутого проекта. Здесь может быть информация о технологиях, целях и достигнутых результатах.</p>
+        </div>
+
+        <!-- Карточка 2 -->
+        <div class="card">
+            <h2>Проект 2: Приложение</h2>
+            <p>Описание мобильного или десктопного интерфейса. Расскажите пользователям, какую проблему решает ваш продукт.</p>
+        </div>
+
+        <!-- Карточка 3 -->
+        <div class="card">
+            <h2>Проект 3: Дизайн-концепт</h2>
+            <p>Красивые макеты, UI/UX исследования или интерактивные анимации, которые вы создали для души или для заказчика.</p>
+        </div>
+    </main>
+
+    <script>
+        // Логика переключения темной/светлой темы
+        const toggleButton = document.getElementById('themeToggle');
+        
+        toggleButton.addEventListener('click', () => {
+            // Проверяем текущую тему на теге <html>
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                toggleButton.textContent = 'Темная тема';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                toggleButton.textContent = 'Светлая тема';
+            }
+        });
+    </script>
+
+</body>
+</html>
